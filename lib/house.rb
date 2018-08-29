@@ -1,4 +1,5 @@
 require './lib/room'
+require 'pry'
 
 class House
   attr_reader :address, :rooms
@@ -17,16 +18,26 @@ class House
   end
 
   def rooms_from_category(category)
-    @rooms.find_all do |rooms|
+    @rooms.find_all do |room|
       room.category == category
     end
   end
 
   def area
     area = 0
-    house.rooms.each do |room|
+    rooms.each do |room|
       area += room.area
     end
     area
+  end
+
+  def price_per_square_foot
+    (price / area.to_f).round(2)
+  end
+
+  def rooms_by_category
+    rooms.sort_by do |room|
+      room.category
+    end
   end
 end
