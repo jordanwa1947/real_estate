@@ -12,7 +12,21 @@ class House
     @price.delete(@price[0]).to_i
   end
 
-  def add_rooms(room)
+  def add_room(room)
     @rooms << room
+  end
+
+  def rooms_from_category(category)
+    @rooms.find_all do |rooms|
+      room.category == category
+    end
+  end
+
+  def area
+    area = 0
+    house.rooms.each do |room|
+      area += room.area
+    end
+    area
   end
 end
